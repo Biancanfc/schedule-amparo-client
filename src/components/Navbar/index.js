@@ -22,7 +22,7 @@ export default function Navbar() {
               <img src={logo} alt="amparo" width={50} />
               <UIText>Amparo Saúde</UIText>
             </Box>
-            <UIText fontsize="14px">
+            <UIText component="div" fontSize="14px">
               <i>Atividades</i>
               <Underline />
             </UIText>
