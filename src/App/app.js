@@ -7,6 +7,7 @@ import { Router } from "react-router";
 import Routes from "routes/index";
 
 import history from "routes/history";
+import { Context } from "context";
 
 import "./global.css";
 
@@ -18,7 +19,7 @@ export default function App() {
       },
       palette: {
         primary: {
-          main: "#49c5b1",
+          main: "#1fa83c",
         },
       },
     },
@@ -27,9 +28,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router history={history}>
-        <Routes />
-      </Router>
+      <Context>
+        <Router history={history}>
+          <Routes />
+        </Router>
+      </Context>
     </ThemeProvider>
   );
 }

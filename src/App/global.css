@@ -7,7 +7,9 @@ body {
 
 :root {
   --success: #1b9c1c;
-  --primary: #49c5b1;
+  --error: #cf1414;
+  --primary: #1fa83c;
   --dark: #0000009e;
   --grey: #d4d4d4;
+  --blue: #39aac7;
 }

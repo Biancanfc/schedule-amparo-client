@@ -7,9 +7,11 @@ import {
   TableBody,
 } from "@material-ui/core";
 
+import { formatDate } from "utils";
 import { StyledTableCell } from "./style";
+import UISelect from "components/UI/Select";
 
-export default function TableActivity({ rows = [] }) {
+export default function TableActivity({ data = [], editActivity }) {
   return (
     <TableContainer>
       <Table>
@@ -23,15 +25,32 @@ export default function TableActivity({ rows = [] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(({ _id, patient, dueDate, activity, status }) => (
+          {data.map(({ _id, patient, dueDate, activity, status }) => (
             <TableRow key={_id}>
               <StyledTableCell component="th" scope="row">
                 {patient.name}
               </StyledTableCell>
               <StyledTableCell>{patient.cpf}</StyledTableCell>
-              <StyledTableCell>{dueDate}</StyledTableCell>
+              <StyledTableCell>{formatDate(dueDate)}</StyledTableCell>
               <StyledTableCell>{activity}</StyledTableCell>
-              <StyledTableCell>{status}</StyledTableCell>
+              <StyledTableCell>
+                <UISelect
+                  width="120px"
+                  value={status}
+                  options={statusOptions}
+                  onChange={({ target }) =>
+                    editActivity({
+                      status: target.value,
+                      _id,
+                      patient,
+                      dueDate,
+                      activity,
+                    })
+                  }
+                  noOutlined
+                  istable="true"
+                />
+              </StyledTableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -39,3 +58,9 @@ export default function TableActivity({ rows = [] }) {
     </TableContainer>
   );
 }
+
+const statusOptions = [
+  { text: "Aberto", value: "Aberto" },
+  { text: "Finalizado", value: "Finalizado" },
+  { text: "Atrasado", value: "Atrasado" },
+];

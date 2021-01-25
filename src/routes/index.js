@@ -1,8 +1,8 @@
-import React, { useLayoutEffect } from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import Route from './route';
-import history from './history';
-import Activity from 'pages/Activity';
+import React, { useLayoutEffect } from "react";
+import { BrowserRouter, Switch } from "react-router-dom";
+import Route from "./route";
+import history from "./history";
+import Activity from "pages/Activity";
 
 function Routes() {
   useLayoutEffect(() => {
@@ -15,7 +15,7 @@ function Routes() {
   return (
     <BrowserRouter history={history}>
       <Switch>
-        <Route exact path={'/'} component={Activity} noContainer isPrivate />
+        <Route exact path={"/"} component={Activity} noContainer isPrivate />
       </Switch>
     </BrowserRouter>
   );
