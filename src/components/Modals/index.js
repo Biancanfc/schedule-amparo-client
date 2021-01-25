@@ -16,7 +16,7 @@ export default function MainModal({
     <Dialog open={show} onClose={onClose} maxWidth={width} fullWidth>
       <Box pb={2}>
         <StyledTitle disableTypography>
-          <UIText fontsize="14px">{title}</UIText>
+          <UIText fontSize="14px">{title}</UIText>
           <IconButton size="small" onClick={onClose}>
             <IoMdClose />
           </IconButton>
