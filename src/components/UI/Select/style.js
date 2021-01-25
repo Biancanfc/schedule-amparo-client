@@ -1,5 +1,11 @@
 import { FormControl, withStyles } from "@material-ui/core";
 
+const colors = {
+  Aberto: "var(--blue)",
+  Atrasado: "var(--error)",
+  Finalizado: "var(--success)",
+};
+
 export const StyledFormControl = withStyles({
   root: {
     width: (props) => props.width,
@@ -16,7 +22,10 @@ export const StyledFormControl = withStyles({
     },
     "& .MuiInputLabel-outlined": {
       fontSize: "14px",
-      fontWeight: "500",
+    },
+    "& .MuiInputBase-root": {
+      fontSize: "14px",
+      color: (props) => props.istable && colors[props.status],
     },
   },
 })(FormControl);
