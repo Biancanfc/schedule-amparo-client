@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { AppBar, Box, Container, Grid } from "@material-ui/core";
+import { Box, Container, Grid } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
-import { FaFilter } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
 
 import UIButton from "components/UI/Button";
 import UIText from "components/UI/Text";

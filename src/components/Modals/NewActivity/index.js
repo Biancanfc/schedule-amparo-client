@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Box, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import * as yup from "yup";
 import { useFormik } from "formik";
@@ -12,7 +12,6 @@ import MainModal from "..";
 
 import { StateContext } from "context";
 import api from "services/api";
-import UIText from "components/UI/Text";
 
 const validationSchema = yup.object().shape({
   patient: yup.object().required("Selecione um paciente").nullable(),
