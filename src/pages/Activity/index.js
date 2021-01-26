@@ -41,6 +41,13 @@ export default function Activity() {
         });
 
         setActivities(data);
+        if (data.data.length === 0)
+          setAlert({
+            message:
+              "Não foi possível encontrar dados para os filtros selecionados",
+            severity: "warning",
+            show: true,
+          });
       } catch (error) {
         setAlert({
           message: "Não foi possível consultar os pacientes",

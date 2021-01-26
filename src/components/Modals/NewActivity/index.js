@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Grid } from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import * as yup from "yup";
 import { useFormik } from "formik";
@@ -12,6 +12,7 @@ import MainModal from "..";
 
 import { StateContext } from "context";
 import api from "services/api";
+import UIText from "components/UI/Text";
 
 const validationSchema = yup.object().shape({
   patient: yup.object().required("Selecione um paciente").nullable(),
@@ -102,8 +103,8 @@ export default function NewActivity({ show, onClose, refresh }) {
             <Autocomplete
               size="small"
               options={patients}
-              getOptionLabel={(option) => option.name}
-              getOptionSelected={(option) => option === values.patient}
+              getOptionLabel={(option) => option.name + " " + option.cpf}
+              getOptionSelected={(option) => option._id === values.patient._id}
               onChange={(_, value) => setFieldValue("patient", value)}
               filterOptions={(options, { inputValue }) =>
                 matchSorter(options, inputValue, { keys: ["name", "cpf"] })
