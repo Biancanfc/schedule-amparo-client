@@ -20,7 +20,7 @@ const validationSchema = yup.object().shape({
   activity: yup.string().required("Digite a atividade"),
 });
 
-export default function NewActivity({ show, onClose }) {
+export default function NewActivity({ show, onClose, refresh }) {
   const {
     actions: { setAlert },
   } = useContext(StateContext);
@@ -55,6 +55,7 @@ export default function NewActivity({ show, onClose }) {
         });
 
         onClose();
+        refresh();
       } catch (error) {
         setAlert({
           message: "Não foi possível criar a atividade",
@@ -72,20 +73,21 @@ export default function NewActivity({ show, onClose }) {
   }, [show, resetForm]);
 
   useEffect(() => {
-    (async function getPatients() {
-      try {
-        const { data } = await api.get(`patient`);
+    if (show)
+      (async function getPatients() {
+        try {
+          const { data } = await api.get(`patient`);
 
-        setPatients(data);
-      } catch (error) {
-        setAlert({
-          message: "Não foi possível consultar os pacientes",
-          severity: "error",
-          show: true,
-        });
-      }
-    })();
-  }, []);
+          setPatients(data);
+        } catch (error) {
+          setAlert({
+            message: "Não foi possível consultar os pacientes",
+            severity: "error",
+            show: true,
+          });
+        }
+      })();
+  }, [show]);
 
   return (
     <MainModal show={show} onClose={onClose} title="Nova Atividade">

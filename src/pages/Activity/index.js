@@ -49,7 +49,7 @@ export default function Activity() {
         });
       }
     })();
-  }, [activityParams, skipGetActivities]);
+  }, [activityParams, skipGetActivities, refresh]);
 
   const handleNewPatient = () => {
     setNewPatient(!newPatient);
@@ -64,7 +64,9 @@ export default function Activity() {
       await api.patch(`activity/${data._id}`, data);
 
       const newActivities = activities;
-      newActivities[activities.findIndex(({ _id }) => _id === data._id)] = data;
+      newActivities[
+        activities.data.findIndex(({ _id }) => _id === data._id)
+      ] = data;
 
       setActivities(newActivities);
       setRefresh(!refresh);
@@ -126,39 +128,13 @@ export default function Activity() {
         </Box>
       </Container>
 
-      {/* <Dialog
-        fullScreen
-        open={filterModal}
-        onClose={handleFilterModal}
-        TransitionComponent={Transition}
-      >
-        <AppBar>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="close"
-              onClick={handleFilterModal}
-            >
-              <IoMdClose size={20} />
-            </IconButton>
-            <UIText>Filtros</UIText>
-          </Toolbar>
-        </AppBar>
-        <Box pt={5} mt={2} px={3} height="100%">
-          <Filters
-            submitFilter={(data) => {
-              setActivityParams(data);
-              handleFilterModal();
-            }}
-            params={activityParams}
-          />
-        </Box>
-      </Dialog> */}
-
       {/* modals patient and activity */}
       <NewPatient show={newPatient} onClose={() => handleNewPatient()} />
-      <NewActivity show={newActivity} onClose={() => handleNewActivity()} />
+      <NewActivity
+        show={newActivity}
+        onClose={() => handleNewActivity()}
+        refresh={() => setRefresh(!refresh)}
+      />
     </>
   );
 }
